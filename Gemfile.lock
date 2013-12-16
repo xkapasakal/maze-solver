@@ -4,9 +4,11 @@ GEM
     commander (4.1.5)
       highline (~> 1.6.11)
     highline (1.6.20)
+    terminal-table (1.4.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   commander
+  terminal-table
