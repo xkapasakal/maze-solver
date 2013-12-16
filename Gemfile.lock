@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    awesome_print (1.2.0)
     commander (4.1.5)
       highline (~> 1.6.11)
     highline (1.6.20)
@@ -10,5 +11,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   commander
   terminal-table
