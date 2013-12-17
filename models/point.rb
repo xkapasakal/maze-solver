@@ -53,7 +53,13 @@ class Point
   end
 
   def to_s
-    "(#{@type}, #{@marked}, #{print_direction})"
+    if @type == 'w'
+      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})".red
+    elsif @marked == 1
+      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})".green
+    else
+      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})"
+    end
   end
 
   def print_direction
@@ -71,7 +77,4 @@ class Point
     end
   end
 
-  def to_descr
-    "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})"
-  end
 end

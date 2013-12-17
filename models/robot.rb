@@ -35,45 +35,49 @@ class Robot
   # In this case each path is walked down exactly twice, once in each direction.
   # The resulting walk is called a bidirectional double-tracing
 
-  def move
-    until @position.is_end?
-      unvisited_point = accessible_points.shuffle.select {|point| point.is_unvisited?}.first
-      if unvisited_point
-        @position.direction = unvisited_point.direction
-        move_to unvisited_point
-      else
-        # all points are marked once or twice
-        if @position.is_marked_once?
-          @position.mark
-          point = accessible_points.find {|point| point.direction == @position.opposite_direction}
-          @position.direction = point.direction
-          move_to point
-        else
-          point = accessible_points.shuffle.sort {|point| point.marked}.first
-          @position.direction = point.direction
-          move_to point
-        end
-      end
-    end
-  end
+  #def move
+  #  until @position.is_end?
+  #    unvisited_point = accessible_points.shuffle.select {|point| point.is_unvisited?}.first
+  #    if unvisited_point
+  #      @position.direction = unvisited_point.direction
+  #      move_to unvisited_point
+  #    else
+  #      # all points are marked once or twice
+  #      if @position.is_marked_once?
+  #        @position.mark
+  #        point = accessible_points.find {|point| point.direction == @position.opposite_direction}
+  #        @position.direction = point.direction
+  #        move_to point
+  #      else
+  #        point = accessible_points.shuffle.sort {|point| point.marked}.first
+  #        @position.direction = point.direction
+  #        move_to point
+  #      end
+  #    end
+  #  end
+  #end
 
   def move_dfs
     @position.mark
-    accessible_points.shuffle.select {|point| point.is_unvisited?}.each do |point|
-      @position.direction = point.direction
-      point.ancestor = @position
-      move_to point
-      move_dfs
-      move_to point.ancestor
+    return if @position.is_end?
+    accessible_points.shuffle.each do |point|
+      if point.is_unvisited?
+        @position.direction = point.direction
+        point.ancestor = @position
+        move_to point
+        move_dfs
+        return if @position.is_end?
+        move_to point.ancestor
+      end
     end
     @position.mark
   end
 
   private
   def move_to(point)
-    ap @position.to_descr if @position
     @position = point
-    @position.mark
+    puts @position.to_s
+    #@position.mark
   end
 
   # adjacency-matrix

@@ -23,9 +23,11 @@ require_relative 'models/robot'
 #
 #  end
 #end
+class String
+  include Term::ANSIColor
+end
 
-
-maze = Maze.new('mazes/maze_4x4.txt')
+maze = Maze.new('mazes/maze.txt')
 table = Terminal::Table.new :rows => maze.grid
 
 puts table
@@ -38,6 +40,7 @@ class Color
 end
 
 print Color.green, Color.bold, 'No Namespace cluttering:', Color.clear, "\n"
+print 'Usage as String Mixins:'.red, "\n"
 # nil is border
 
 
