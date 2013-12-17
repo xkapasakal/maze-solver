@@ -1,11 +1,12 @@
 class Point
-  attr_accessor :x, :y, :type, :marked, :direction
+  attr_accessor :x, :y, :type, :marked, :direction, :ancestor
   def initialize(x, y, type)
     @x = x
     @y = y
     @marked = 0
     @type = type
     @direction = nil
+    @ancestor = nil
   end
 
   def mark

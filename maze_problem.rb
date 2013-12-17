@@ -25,12 +25,12 @@ require_relative 'models/robot'
 #end
 
 
-maze = Maze.new('maze.txt')
+maze = Maze.new('mazes/maze_4x4.txt')
 table = Terminal::Table.new :rows => maze.grid
 
 puts table
 robot = Robot.new(maze)
-robot.move
+robot.move_dfs
 puts table
 
 class Color

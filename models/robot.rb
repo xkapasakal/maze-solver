@@ -34,6 +34,7 @@ class Robot
   # If there is no exit, this method will take you back to the start where all paths are marked twice.
   # In this case each path is walked down exactly twice, once in each direction.
   # The resulting walk is called a bidirectional double-tracing
+
   def move
     until @position.is_end?
       unvisited_point = accessible_points.shuffle.select {|point| point.is_unvisited?}.first
@@ -56,6 +57,18 @@ class Robot
     end
   end
 
+  def move_dfs
+    @position.mark
+    accessible_points.shuffle.select {|point| point.is_unvisited?}.each do |point|
+      @position.direction = point.direction
+      point.ancestor = @position
+      move_to point
+      move_dfs
+      move_to point.ancestor
+    end
+    @position.mark
+  end
+
   private
   def move_to(point)
     ap @position.to_descr if @position
@@ -63,6 +76,7 @@ class Robot
     @position.mark
   end
 
+  # adjacency-matrix
   def accessible_points
     accessible_points = []
     accessible_points.push(up_point) if up_point and up_point.is_accessible?
