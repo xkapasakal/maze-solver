@@ -1,2 +1,2 @@
-maze_problem
+maze-solver
 ============
