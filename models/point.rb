@@ -78,3 +78,12 @@ class Point
   end
 
 end
+
+class AccessiblePoint < Point
+  attr_accessor :direction
+
+  def initialize(point, direction)
+    super(point.x, point.y, point.type)
+    @direction = direction
+  end
+end
