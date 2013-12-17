@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
 gem 'commander'
 gem 'terminal-table'
+gem 'term-ansicolor', '~> 1.2.2'
 gem 'awesome_print'

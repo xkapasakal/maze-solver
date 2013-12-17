@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'awesome_print'
 require 'terminal-table'
+require 'term/ansicolor'
 
 #require 'commander/import'
 require_relative 'models/maze'
@@ -31,6 +32,12 @@ puts table
 robot = Robot.new(maze)
 robot.move
 puts table
+
+class Color
+  extend Term::ANSIColor
+end
+
+print Color.green, Color.bold, 'No Namespace cluttering:', Color.clear, "\n"
 # nil is border
 
 
