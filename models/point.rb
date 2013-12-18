@@ -1,12 +1,15 @@
 class Point
   attr_accessor :x, :y, :type, :marked, :direction, :ancestor
-  def initialize(x, y, type)
+  attr_reader :height
+
+  def initialize(x, y, type, height)
     @x = x
     @y = y
     @marked = 0
     @type = type
     @direction = nil
     @ancestor = nil
+    @height = height
   end
 
   def mark
@@ -54,11 +57,11 @@ class Point
 
   def to_s
     if @type == 'w'
-      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})".red
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".red
     elsif @marked == 1
-      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})".green
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".green
     else
-      "(#{@x}, #{y}, #{@type}, #{@marked}, #{print_direction})"
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})"
     end
   end
 
@@ -83,7 +86,7 @@ class AccessiblePoint < Point
   attr_accessor :direction
 
   def initialize(point, direction)
-    super(point.x, point.y, point.type)
+    super(point.x, point.y, point.type, point.height)
     @direction = direction
   end
 end
