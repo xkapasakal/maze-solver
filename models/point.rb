@@ -47,8 +47,14 @@ class Point
   def to_s
     if @type == TYPES[:wall]
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".red
-    elsif @marked == 1
+    elsif is_start?
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".blue
+    elsif is_end?
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".yellow
+    elsif is_marked_once?
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".green
+    elsif is_marked_twice?
+      "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".magenta
     else
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})"
     end
