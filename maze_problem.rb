@@ -11,7 +11,7 @@ class String
   include Term::ANSIColor
 end
 
-maze_file = File.new('mazes/maze_1.txt')
+maze_file = File.new('mazes/maze_without_end.txt')
 maze = Maze.new(maze_file)
 table = Terminal::Table.new :rows => maze.grid
 

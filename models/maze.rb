@@ -10,6 +10,7 @@ class Maze
       lines.push line.strip
     end
     start_counter = 0
+    end_counter = 0
     lines.each_with_index do |line, line_index|
       row = []
       letters = line.split(' ')
@@ -19,13 +20,17 @@ class Maze
           @start = point
           start_counter += 1
         end
-        @end = point if point.is_end?
+        if point.is_end?
+          @end = point
+          end_counter += 1
+        end
         row.push(point)
       end
       validate_line line
       @grid.push(row)
     end
     raise StartPointsArgumentError, 'There can and must be only one start point' if start_counter != 1
+    puts 'Warning: There is no end point' if end_counter == 0
   end
 
   def validate_line(line)
