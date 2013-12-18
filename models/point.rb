@@ -40,21 +40,6 @@ class Point
     marked == 2
   end
 
-  def opposite_direction
-    case @direction
-      when :up
-        :down
-      when :right
-        :left
-      when :down
-        :up
-      when :left
-        :right
-      else
-        puts "You gave me #{@direction} -- I have no idea what to do with that."
-    end
-  end
-
   def to_s
     if @type == 'w'
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".red
@@ -64,6 +49,11 @@ class Point
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})"
     end
   end
+
+  def to_coordinates
+    "(#{@x +1}, #{@height - y})"
+  end
+  protected
 
   def print_direction
     case @direction

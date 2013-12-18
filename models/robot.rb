@@ -25,7 +25,7 @@ class Robot
 
   def move_to(point)
     @position = point
-    puts @position.to_s
+    puts @position.to_coordinates
     #@position.mark
   end
 
