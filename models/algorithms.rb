@@ -5,14 +5,14 @@ class Algorithms
     @dfs = ->(robot) {
       robot.position.mark
       return if robot.position.is_end?
-      robot.accessible_points.shuffle.each do |point|
-        if point.is_unvisited?
-          robot.position.direction = point.direction
-          point.ancestor = robot.position
-          robot.move_to point
+      robot.accessible_points.shuffle.each do |move|
+        if move.point.is_unvisited?
+          robot.position.direction = move.direction
+          move.point.ancestor = robot.position
+          robot.move_to move.point
           @dfs.call robot
           return if robot.position.is_end?
-          robot.move_to point.ancestor
+          robot.move_to move.point.ancestor
         end
       end
       robot.position.mark
