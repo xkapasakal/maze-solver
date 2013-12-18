@@ -1,4 +1,7 @@
 class Point
+
+  TYPES = { free: 'f', wall: 'w', start: 's', end: 'g' }
+
   attr_accessor :x, :y, :type, :marked, :direction, :ancestor
   attr_reader :height
 
@@ -10,6 +13,7 @@ class Point
     @direction = nil
     @ancestor = nil
     @height = height
+    validate
   end
 
   def mark
@@ -17,15 +21,15 @@ class Point
   end
 
   def is_start?
-    @type == 's'
+    @type == TYPES[:start]
   end
 
   def is_end?
-    @type == 'g'
+    @type == TYPES[:end]
   end
 
   def is_accessible?
-    @type != 'w'
+    @type != TYPES[:wall]
   end
 
   def is_unvisited?
@@ -41,7 +45,7 @@ class Point
   end
 
   def to_s
-    if @type == 'w'
+    if @type == TYPES[:wall]
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".red
     elsif @marked == 1
       "(#{@x +1}, #{@height - y}, #{@type}, #{@marked}, #{print_direction})".green
@@ -50,10 +54,21 @@ class Point
     end
   end
 
+  def validate
+    validate_type
+  end
+
   def to_coordinates
     "(#{@x +1}, #{@height - y})"
   end
   protected
+
+  def validate_type
+    unless @type =~ /(#{TYPES[:free]}|#{TYPES[:wall]}|#{TYPES[:start]}|#{TYPES[:end]})/
+      raise PointTypeArgumentError, "the letter '#{@type}' is not valid for point type. Use one of '#{TYPES[:free]}' for free,
+        '#{TYPES[:wall]}' for wall, '#{TYPES[:start]}' for start and #{TYPES[:end]} for end"
+    end
+  end
 
   def print_direction
     case @direction
@@ -79,4 +94,7 @@ class AccessiblePoint < Point
     super(point.x, point.y, point.type, point.height)
     @direction = direction
   end
+end
+
+class PointTypeArgumentError < ArgumentError
 end
