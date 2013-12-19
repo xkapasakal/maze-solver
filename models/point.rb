@@ -5,6 +5,16 @@ class Point
   attr_accessor :x, :y, :type, :marked, :direction, :ancestor
   attr_reader :height
 
+  ##
+  # Creates a new point where
+  # +x+ is the horizontal coordinate starting from 0,
+  # +y+ is the vertical coordinate starting from 0,
+  # +type+ is the type of point (one of 'f', 'w', 's' or 'g')
+  # and +height+ is the number of rows.
+  #
+  #
+  # A PointTypeArgumentError is raised if the type id not one of 'f', 'w', 's' or 'g'
+
   def initialize(x, y, type, height)
     @x = x
     @y = y

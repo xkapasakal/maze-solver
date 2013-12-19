@@ -3,6 +3,11 @@ require_relative 'point'
 class Maze
   attr_reader :grid, :start, :end
 
+  ##
+  # Creates a maze grid from a file
+  #
+  # A LineFormatArgumentError is raised if the line is not in the correct format
+  # A StartPointsArgumentError is raised if there isn't exactly one start point
   def initialize(maze_file)
     @grid = []
     lines = []
@@ -30,7 +35,7 @@ class Maze
       @grid.push(row)
     end
     raise StartPointsArgumentError, 'There can and must be only one start point' if start_counter != 1
-    puts 'Warning: There is no end point' if end_counter == 0
+    puts 'Warning: There is no end point'.yellow if end_counter == 0
   end
 
   def validate_line(line)

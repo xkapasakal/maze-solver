@@ -39,8 +39,6 @@ class Robot
     if @maze.grid[@position.y - 1] and @position.y - 1 >= 0
       point = @maze.grid[@position.y - 1][@position.x]
       Move.new(point, :up)
-      #point.direction = :up
-      #point
     end
   end
 
@@ -48,8 +46,6 @@ class Robot
     if @maze.grid[@position.y][@position.x + 1]
       point = @maze.grid[@position.y][@position.x + 1]
       Move.new(point, :right)
-      #point.direction = :right
-      #point
     end
   end
 
@@ -57,8 +53,6 @@ class Robot
     if @maze.grid[@position.y + 1]
       point = @maze.grid[@position.y + 1][@position.x]
       Move.new(point, :down)
-      #point.direction = :down
-      #point
     end
   end
 
@@ -66,8 +60,6 @@ class Robot
     if @position.x - 1 >= 0 and @maze.grid[@position.y][@position.x - 1]
       point = @maze.grid[@position.y][@position.x - 1]
       Move.new(point, :left)
-      #point.direction = :left
-      #point
     end
   end
 

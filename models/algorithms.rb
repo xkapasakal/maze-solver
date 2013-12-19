@@ -1,4 +1,11 @@
+##
+# This class defines maze solving algorithms
+
 class Algorithms
+
+  # Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures.
+  # One starts at the root (selecting some node as the root in the graph case)
+  # and explores as far as possible along each branch before backtracking.
   attr_reader :dfs
 
   def initialize
