@@ -23,5 +23,14 @@ describe Maze do
         end
       end
     end
+
+    it 'should find goal at position (5, 0)' do
+      maze_file = File.new('mazes/maze.txt')
+      maze = Maze.new(maze_file)
+      robot = Robot.new(maze)
+      robot.move_dfs Algorithms.new.dfs
+      robot.position.x.should eq 5
+      robot.position.y.should eq 0
+    end
   end
 end
